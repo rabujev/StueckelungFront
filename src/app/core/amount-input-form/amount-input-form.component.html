@@ -1,0 +1,32 @@
+<div class="mt-5"></div>
+    
+
+    <div class="container-fluid ">
+        <form [formGroup]="inputForm" (ngSubmit)="onSubmit()" class="mb-4">
+
+            <input formControlName="amount" type="text" class="form-control mb-4 w-auto" placeholder="Betrag in EUR"
+                required>
+                
+
+
+            <!-- VALIDATION ERROR MESSAGE -->
+            <div *ngIf="amount.invalid && (amount.dirty || amount.touched)" class="alert alert-danger alert-dismissible fade show w-50">
+                <div *ngIf="amount.errors?.['required']" >
+                    <strong>Feld ist erforderlich</strong>
+                </div>
+                <div *ngIf="amount.errors?.['pattern']">
+                    <strong>Gültigen Betrag eingeben</strong>
+                </div>
+                <!-- 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                -->
+
+            </div>
+            <mat-slide-toggle formControlName="backend">Backend Verarbeitung (Voreinstellung Frontend)</mat-slide-toggle>
+            <br><br>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Berechnen</button>
+
+        </form>
+    </div>
