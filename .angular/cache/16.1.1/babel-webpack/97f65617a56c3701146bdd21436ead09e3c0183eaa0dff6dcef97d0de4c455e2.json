@@ -1,1 +1,0 @@
-{"ast":null,"code":"export class Dto {\n  constructor(total, result, previousResult, difference) {\n    this.total = total;\n    this.result = result;\n    this.previousResult = previousResult;\n    this.difference = difference;\n  }\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
