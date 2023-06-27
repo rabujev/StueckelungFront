@@ -12,8 +12,9 @@ export class FormService {
 
   //this is a Subject (multicastable Observable) others can subscribe to receive its value whenever updated.
   submittedForm: Subject<[number, boolean]> = new Subject<[number, boolean]>;
+  
+  backEndUrl: string = 'https://stueckelung-back-2db83e36cd11.herokuapp.com/api/processFormData';
 
-  backEndUrl: string = 'http://stueckelung.eu-north-1.elasticbeanstalk.com/api/processFormData';
   //local : "http://localhost:5000/api/processFormData";
 
 
