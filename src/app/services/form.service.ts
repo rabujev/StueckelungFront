@@ -20,7 +20,7 @@ export class FormService {
 
   constructor(private httpClient: HttpClient) { }
 
-  //Fills result Map with the amounts of notes and coins 
+  //Fills result Map with the amounts of notes and coins by calling either backend or frontend processing depending on user choice
 
   updateTables(total: number, previousTotal: number | null, result: Map<number, number>,
     useBackend: boolean,
@@ -78,17 +78,21 @@ export class FormService {
 
     let rest: number = total;
     //for each currency denomination, calculates how many of them fit in the rest amount and fills result map
+
+    let cf: number = 100;  //correction factor when working with %modulo operation to transform decimals into intergers.
+
     for (let key of result.keys()) {
       let value: number = Math.floor(rest / key);
       result.set(key, value);  //should modify result as a side effect 
 
-      rest = rest % key;
+      rest = (rest * cf) % (key * cf);
     }
     //calculating the difference
     if (previousTotal != null)
       this.calcFrontDifference(result, previousResult, difference);
   }
 
+  //calculates the difference between the present input and past input
   calcFrontDifference(result: Map<number, number>,
     previousResult: Map<number, number>,
     difference: Map<number, string>): void {
